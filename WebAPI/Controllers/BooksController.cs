@@ -25,7 +25,8 @@ namespace WebAPI.Controllers
         public IActionResult GetAllBooks(){
             try
             {    
-                var books = _context.Books.ToList();
+                var books = _context.Books.AsNoTracking().ToList();
+
                 return Ok(books);
             }
             catch (System.Exception ex)
@@ -36,7 +37,7 @@ namespace WebAPI.Controllers
 
         [HttpGet("{id:int}")]
         public IActionResult GetOneBook([FromRoute(Name ="id")]int id){
-            var book = _context.Books.Where(b=> b.Id.Equals(id)).SingleOrDefault();
+            var book = _context.Books.Where(b=> b.Id.Equals(id)).AsNoTracking().SingleOrDefault();
 
             if(book is null)
                 return NotFound();
@@ -52,7 +53,7 @@ namespace WebAPI.Controllers
             try
             {
                 _context.Books.Add(book);
-                _context.SaveChanges();
+                SaveChanges();
 
                 return Ok(book);
             }
@@ -77,7 +78,7 @@ namespace WebAPI.Controllers
 
                 var entityEntry = _context.Entry(book);
                 entityEntry.State = EntityState.Modified;
-                _context.SaveChanges();
+                SaveChanges();
 
                 return NoContent();
             }
@@ -98,7 +99,7 @@ namespace WebAPI.Controllers
                     return NotFound();
 
                 _context.Books.Remove(entity);
-                _context.SaveChanges();
+                SaveChanges();
                 
                 return NoContent();
             }
@@ -123,7 +124,7 @@ namespace WebAPI.Controllers
                     return NotFound();
 
                 patchBook.ApplyTo(entity);
-                _context.SaveChanges();
+                SaveChanges();
 
                 return NoContent();
             }
@@ -131,6 +132,12 @@ namespace WebAPI.Controllers
             {
                 return StatusCode(StatusCodes.Status500InternalServerError,ex.Message);
             }
+        }
+
+        [NonAction]
+        private void SaveChanges()
+        {
+            _context.SaveChanges();
         }
     }
 }
