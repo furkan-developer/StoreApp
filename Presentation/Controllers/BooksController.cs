@@ -53,7 +53,7 @@ namespace Presentation.Controllers
         [HttpDelete("{id:int}")]
         public IActionResult RemoveOneBook([FromRoute(Name = "id")] int id)
         {
-            var entity = _serviceManager.BookService.GetOneBook(true, id);
+            _serviceManager.BookService.DeleteOneBook(id);
             return NoContent();
         }
     }

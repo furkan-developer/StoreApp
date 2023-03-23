@@ -97,6 +97,9 @@ namespace Services
                 if (result is null)
                     throw new FileNotFoundException("Not found book");
 
+                result.Title = book.Title;
+                result.Price = book.Price;
+
                 _repoManager.BookRepository.UpdateOneBook(result);
                 _repoManager.SaveChanges();
 
