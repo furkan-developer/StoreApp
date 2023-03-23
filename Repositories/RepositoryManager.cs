@@ -25,7 +25,7 @@ namespace Repositories
         }
         public IBookRepository BookRepository => _bookRepository.Value;
 
-        public void Commit(bool rollBackTransaction = false, bool callSaveChanges = true)
+        public void Commit(bool callSaveChanges = true, bool rollBackTransaction = false)
         {
             if(callSaveChanges)
                 SaveChanges();

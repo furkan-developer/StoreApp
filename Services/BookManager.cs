@@ -26,6 +26,7 @@ namespace Services
 
                 _repoManager.BookRepository.DeleteOneBook(book);
                 _repoManager.SaveChanges();
+                _repoManager.Commit(false);
 
             }catch (Exception ex)
             {
@@ -82,6 +83,7 @@ namespace Services
 
                 _repoManager.BookRepository.InsertOneBook(book);
                 _repoManager.SaveChanges();
+                _repoManager.Commit(false);
             }
             catch (Exception ex)
             {
@@ -102,8 +104,9 @@ namespace Services
 
                 _repoManager.BookRepository.UpdateOneBook(result);
                 _repoManager.SaveChanges();
-
-            }catch (Exception ex)
+                _repoManager.Commit(false);
+            }
+            catch (Exception ex)
             {
                 throw new Exception($"Created exception when updated book object exception:\n{ex.Message}");
             }

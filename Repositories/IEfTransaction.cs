@@ -8,6 +8,6 @@ namespace Repositories
 {
     public interface IEfTransaction
     {
-        void Commit(bool rollBackTransaction = false, bool callSaveChanges = true);
+        void Commit(bool callSaveChanges = true, bool rollBackTransaction = false);
     }
 }
