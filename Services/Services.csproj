@@ -11,4 +11,9 @@
     <ProjectReference Include="..\Repositories\Repositories.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="NLog.Extensions.Logging" Version="5.2.2" />
+    <PackageReference Include="NLog.Web.AspNetCore" Version="5.2.2" />
+  </ItemGroup>
+
 </Project>

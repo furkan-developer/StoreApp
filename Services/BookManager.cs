@@ -9,10 +9,12 @@ namespace Services
     public class BookManager : IBookService
     {
         private readonly IRepositoryManager _repoManager;
+        private readonly ILoggerService _logger;
 
-        public BookManager(IRepositoryManager repoManager)
+        public BookManager(IRepositoryManager repoManager, ILoggerService logger)
         {
             _repoManager = repoManager;
+            _logger = logger;
         }
 
         public void DeleteOneBook(int id)
@@ -21,8 +23,11 @@ namespace Services
             try
             {
                 var book = _repoManager.BookRepository.GetOneBook(false,id);
-                if(book == null) 
+                if(book == null)
+                {
+                    _logger.Info("Not Found Exception");
                     throw new FileNotFoundException("Not found book");
+                }
 
                 _repoManager.BookRepository.DeleteOneBook(book);
                 _repoManager.SaveChanges();

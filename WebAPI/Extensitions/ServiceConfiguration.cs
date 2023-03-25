@@ -29,6 +29,8 @@ namespace WebAPI.Extensitions
 
         public static void BusinessServicesConfigure(this IServiceCollection services)
         {
+            // Logger
+            services.AddSingleton<ILoggerService,LoggerManager>();
 
             services.AddScoped<IServiceManager, ServiceManager>();
             services.AddScoped<IBookService, BookManager>();

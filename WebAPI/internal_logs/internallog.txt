@@ -1,0 +1,12 @@
+2023-03-25 22:12:20.3664 Info Message Template Auto Format enabled
+2023-03-25 22:12:20.4073 Info Registered target NLog.Targets.FileTarget(Name=logfile)
+2023-03-25 22:12:20.4251 Info Validating config: TargetNames=logfile, ConfigItems=12, FilePath=C:\Users\furka\Desktop\btk-web-apı\StoreApp\WebAPI\bin\Debug\net7.0\NLog.config
+2023-03-25 22:12:20.4391 Info Configuration initialized.
+2023-03-25 22:12:20.4632 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.1.2.1561. Product version: 5.1.2+f57745d9fb1124b8629db879019db120a57698ab. GlobalAssemblyCache: False
+2023-03-25 22:12:20.4632 Info Validating config: TargetNames=logfile, ConfigItems=12, FilePath=C:\Users\furka\Desktop\btk-web-apı\StoreApp\WebAPI\bin\Debug\net7.0\NLog.config
+2023-03-25 22:21:37.0771 Info Message Template Auto Format enabled
+2023-03-25 22:21:37.1316 Info Registered target NLog.Targets.FileTarget(Name=logfile)
+2023-03-25 22:21:37.1316 Info Validating config: TargetNames=logfile, ConfigItems=12, FilePath=C:\Users\furka\Desktop\btk-web-apı\StoreApp\WebAPI\bin\Debug\net7.0\NLog.config
+2023-03-25 22:21:37.1614 Info Configuration initialized.
+2023-03-25 22:21:37.1720 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.1.2.1561. Product version: 5.1.2+f57745d9fb1124b8629db879019db120a57698ab. GlobalAssemblyCache: False
+2023-03-25 22:21:37.1720 Info Validating config: TargetNames=logfile, ConfigItems=12, FilePath=C:\Users\furka\Desktop\btk-web-apı\StoreApp\WebAPI\bin\Debug\net7.0\NLog.config

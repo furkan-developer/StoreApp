@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using NLog.Web;
 using Presentation;
 using Repositories;
 using Repositories.Concrete;
@@ -12,6 +13,10 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllers().AddNewtonsoftJson().AddApplicationPart(typeof(PresentationReferece).Assembly);
+
+builder.Logging.ClearProviders();
+builder.Host.UseNLog();
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -27,6 +32,11 @@ if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
+}
+
+if (!app.Environment.IsDevelopment())
+{
+    app.UseHsts();
 }
 
 app.UseHttpsRedirection();
