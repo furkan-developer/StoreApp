@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Repositories;
 using Services.Contract;
+using Services.CustomExceptions;
 using System.Linq.Expressions;
 
 namespace Services
@@ -23,8 +24,7 @@ namespace Services
             var book = _repoManager.BookRepository.GetOneBook(false, id);
             if (book == null)
             {
-                //_logger.Info("Not Found Exception");
-                throw new FileNotFoundException("Not found book");
+                throw new BookNotFoundException("Not Found Book"); 
             }
 
             _repoManager.BookRepository.DeleteOneBook(book);
