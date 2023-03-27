@@ -20,23 +20,17 @@ namespace Services
         public void DeleteOneBook(int id)
         {
 
-            try
+            var book = _repoManager.BookRepository.GetOneBook(false, id);
+            if (book == null)
             {
-                var book = _repoManager.BookRepository.GetOneBook(false,id);
-                if(book == null)
-                {
-                    _logger.Info("Not Found Exception");
-                    throw new FileNotFoundException("Not found book");
-                }
-
-                _repoManager.BookRepository.DeleteOneBook(book);
-                _repoManager.SaveChanges();
-                _repoManager.Commit(false);
-
-            }catch (Exception ex)
-            {
-                throw new Exception($"Created exception when deleted Book object exception:\n{ex.Message}");
+                //_logger.Info("Not Found Exception");
+                throw new FileNotFoundException("Not found book");
             }
+
+            _repoManager.BookRepository.DeleteOneBook(book);
+            _repoManager.SaveChanges();
+            _repoManager.Commit(false);
+
         }
 
         public IEnumerable<Book> GetAllBooks(bool isTrack)

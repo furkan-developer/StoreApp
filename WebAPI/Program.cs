@@ -39,6 +39,10 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
+var loggerService = app.Services.GetRequiredService<ILoggerService>();
+
+app.ConfigureExceptionHandler(loggerService); 
+
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
