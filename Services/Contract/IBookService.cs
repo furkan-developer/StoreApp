@@ -1,4 +1,5 @@
 ﻿using Entities;
+using Entities.Dtos.UpdateDtos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,7 +15,7 @@ namespace Services.Contract
         IEnumerable<Book> GetAllBooks(bool isTrack);
         IEnumerable<Book> GetAllBooks(bool isTrack, Expression<Func<Book, bool>> expression);
         void InsertOneBook(Book book);
-        void UpdateOneBook(int id, Book book);
+        void UpdateOneBook(int id, BookDtoForUpdate bookDto);
         void DeleteOneBook(int id);
     }
 }

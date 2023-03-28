@@ -1,4 +1,6 @@
-﻿using Entities;
+﻿using AutoMapper;
+using Entities;
+using Entities.Dtos.UpdateDtos;
 using Microsoft.EntityFrameworkCore;
 using Repositories;
 using Services.Contract;
@@ -11,11 +13,13 @@ namespace Services
     {
         private readonly IRepositoryManager _repoManager;
         private readonly ILoggerService _logger;
+        private readonly IMapper _mapper;
 
-        public BookManager(IRepositoryManager repoManager, ILoggerService logger)
+        public BookManager(IRepositoryManager repoManager, ILoggerService logger, IMapper mapper)
         {
             _repoManager = repoManager;
             _logger = logger;
+            _mapper = mapper;
         }
 
         public void DeleteOneBook(int id)
@@ -90,7 +94,7 @@ namespace Services
             }
         }
 
-        public void UpdateOneBook(int id, Book book)
+        public void UpdateOneBook(int id, BookDtoForUpdate bookDto)
         {
             try
             {
@@ -98,8 +102,7 @@ namespace Services
                 if (result is null)
                     throw new FileNotFoundException("Not found book");
 
-                result.Title = book.Title;
-                result.Price = book.Price;
+                result = _mapper.Map<Book>(bookDto);
 
                 _repoManager.BookRepository.UpdateOneBook(result);
                 _repoManager.SaveChanges();

@@ -1,4 +1,5 @@
 ﻿using Entities;
+using Entities.Dtos.UpdateDtos;
 using Microsoft.AspNetCore.Mvc;
 using Services;
 using System;
@@ -44,9 +45,9 @@ namespace Presentation.Controllers
         }
 
         [HttpPut("{id:int}")]
-        public IActionResult UpdateOneBook([FromRoute(Name = "id")] int id, [FromBody] Book book)
+        public IActionResult UpdateOneBook([FromRoute(Name = "id")] int id, [FromBody] BookDtoForUpdate bookDto)
         {
-            _serviceManager.BookService.UpdateOneBook(id, book);
+            _serviceManager.BookService.UpdateOneBook(id, bookDto);
             return NoContent();
         }
 
