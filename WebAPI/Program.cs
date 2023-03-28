@@ -24,6 +24,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.SqlServerConfigure(builder.Configuration);
 builder.Services.RepositoryServicesConfigure();
 builder.Services.BusinessServicesConfigure();
+builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
 
 var app = builder.Build();
 
