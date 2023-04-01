@@ -12,7 +12,14 @@ using WebAPI.Extensitions;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddControllers().AddNewtonsoftJson().AddApplicationPart(typeof(PresentationReferece).Assembly);
+builder.Services.AddControllers(options =>
+    {
+        options.RespectBrowserAcceptHeader = true;
+        options.ReturnHttpNotAcceptable = true;
+    })
+    .AddXmlDataContractSerializerFormatters()
+    .AddNewtonsoftJson()
+    .AddApplicationPart(typeof(PresentationReferece).Assembly);
 
 builder.Logging.ClearProviders();
 builder.Host.UseNLog();
