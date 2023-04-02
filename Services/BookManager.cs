@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using Entities;
-using Entities.Dtos.UpdateDtos;
+using Entities.Dtos.Book;
 using Microsoft.EntityFrameworkCore;
 using Repositories;
 using Services.Contract;

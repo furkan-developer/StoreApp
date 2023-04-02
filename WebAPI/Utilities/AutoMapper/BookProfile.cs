@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using Entities;
-using Entities.Dtos.UpdateDtos;
+using Entities.Dtos.Book;
 
 namespace WebAPI.Utilities.AutoMapper
 {

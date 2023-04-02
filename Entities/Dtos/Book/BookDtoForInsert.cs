@@ -4,7 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Entities.Dtos.UpdateDtos
+namespace Entities.Dtos.Book
 {
-    public record BookDtoForUpdate(int Id, String Title, decimal Price);
+    public record BookDtoForInsert: BookDtoForManupilation
+    {
+    }
 }
