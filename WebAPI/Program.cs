@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using NLog.Web;
 using Presentation;
@@ -20,6 +21,11 @@ builder.Services.AddControllers(options =>
     .AddXmlDataContractSerializerFormatters()
     .AddNewtonsoftJson()
     .AddApplicationPart(typeof(PresentationReferece).Assembly);
+
+builder.Services.Configure<ApiBehaviorOptions>(options =>
+{
+    options.SuppressModelStateInvalidFilter = true;
+});
 
 builder.Logging.ClearProviders();
 builder.Host.UseNLog();

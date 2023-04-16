@@ -14,7 +14,7 @@ namespace Services.Contract
         Book GetOneBook(bool isTrack, int id);
         IEnumerable<Book> GetAllBooks(bool isTrack);
         IEnumerable<Book> GetAllBooks(bool isTrack, Expression<Func<Book, bool>> expression);
-        void InsertOneBook(Book book);
+        void InsertOneBook(BookDtoForInsert book);
         void UpdateOneBook(int id, BookDtoForUpdate bookDto);
         void DeleteOneBook(int id);
     }

@@ -38,10 +38,15 @@ namespace Presentation.Controllers
         }
 
         [HttpPost]
-        public IActionResult InsertOneBook([FromBody] Book book)
+        public IActionResult InsertOneBook([FromBody] BookDtoForInsert bookDto)
         {
-            _serviceManager.BookService.InsertOneBook(book);
-            return Ok(book);
+            if(!ModelState.IsValid)
+            {
+                return UnprocessableEntity(ModelState);
+            }
+
+            _serviceManager.BookService.InsertOneBook(bookDto);
+            return NoContent();
         }
 
         [HttpPut("{id:int}")]

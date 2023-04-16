@@ -77,12 +77,14 @@ namespace Services
             }
         }
 
-        public void InsertOneBook(Book book)
+        public void InsertOneBook(BookDtoForInsert bookDto)
         {
             try
             {
-                if (book == null)
+                if (bookDto == null)
                     throw new ArgumentNullException("Book object is not null reference");
+
+                var book = _mapper.Map<Book>(bookDto);
 
                 _repoManager.BookRepository.InsertOneBook(book);
                 _repoManager.SaveChanges();
