@@ -6,6 +6,7 @@ using Microsoft.VisualBasic;
 using Repositories;
 using Services.Contract;
 using Services.CustomExceptions;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq.Expressions;
 
 namespace Services
@@ -26,11 +27,7 @@ namespace Services
         public async Task DeleteOneBookAsync(int id)
         {
 
-            var book = await _repoManager.BookRepository.GetOneBookAsync(false, id);
-            if (book == null)
-            {
-                throw new BookNotFoundException("Not Found Book");
-            }
+            var book = await GetOneBookByIdAndCheckExist(false, id);
 
             _repoManager.BookRepository.DeleteOneBook(book);
             await _repoManager.SaveChangesAsync();
@@ -48,10 +45,7 @@ namespace Services
 
         public async Task<Book> GetOneBookAsync(bool isTrack, int id)
         {
-            var book = await _repoManager.BookRepository.GetOneBookAsync(isTrack, id);
-
-            if (book is null)
-                throw new BookNotFoundException("Not found book");
+            var book = await GetOneBookByIdAndCheckExist(false,id);
 
             return book;
         }
@@ -71,14 +65,23 @@ namespace Services
         public async Task UpdateOneBookAsync(int id, BookDtoForUpdate bookDto)
         {
 
-            var result = await _repoManager.BookRepository.GetOneBookAsync(false, id);
+            var book = await GetOneBookByIdAndCheckExist(false, id);
+
+            book = _mapper.Map<Book>(bookDto);
+
+            _repoManager.BookRepository.UpdateOneBook(book);
+            await _repoManager.SaveChangesAsync();
+        }
+
+        #region Business Rules
+        private async Task<Book> GetOneBookByIdAndCheckExist(bool isTrack, int id)
+        {
+            var result = await _repoManager.BookRepository.GetOneBookAsync(isTrack, id);
             if (result is null)
                 throw new BookNotFoundException("Not found book");
 
-            result = _mapper.Map<Book>(bookDto);
-
-            _repoManager.BookRepository.UpdateOneBook(result);
-            await _repoManager.SaveChangesAsync();
+            return result;
         }
+        #endregion
     }
 }
