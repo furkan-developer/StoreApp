@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using NLog.Web;
 using Presentation;
+using Presentation.Filters;
 using Repositories;
 using Repositories.Concrete;
 using Repositories.Contract;
@@ -17,6 +18,7 @@ builder.Services.AddControllers(options =>
     {
         options.RespectBrowserAcceptHeader = true;
         options.ReturnHttpNotAcceptable = true;
+        options.Filters.AddService(typeof(LogFilter));
     })
     .AddXmlDataContractSerializerFormatters()
     .AddNewtonsoftJson()
@@ -38,6 +40,7 @@ builder.Services.SqlServerConfigure(builder.Configuration);
 builder.Services.RepositoryServicesConfigure();
 builder.Services.BusinessServicesConfigure();
 builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
+builder.Services.ConfigureLogFilter();
 
 var app = builder.Build();
 
