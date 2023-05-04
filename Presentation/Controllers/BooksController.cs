@@ -1,6 +1,7 @@
 ﻿using Entities;
 using Entities.Dtos.Book;
 using Microsoft.AspNetCore.Mvc;
+using Presentation.Filters;
 using Services;
 using System;
 using System.Collections.Generic;
@@ -37,18 +38,15 @@ namespace Presentation.Controllers
             return Ok(book);
         }
 
+        [ValidationFilter]
         [HttpPost]
         public async Task<IActionResult> InsertOneBook([FromBody] BookDtoForInsert bookDto)
         {
-            if(!ModelState.IsValid)
-            {
-                return UnprocessableEntity(ModelState);
-            }
-
             await _serviceManager.BookService.InsertOneBookAsync(bookDto);
             return NoContent();
         }
 
+        [ValidationFilter]
         [HttpPut("{id:int}")]
         public async Task<IActionResult> UpdateOneBook([FromRoute(Name = "id")] int id, [FromBody] BookDtoForUpdate bookDto)
         {

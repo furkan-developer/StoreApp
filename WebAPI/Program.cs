@@ -40,7 +40,7 @@ builder.Services.SqlServerConfigure(builder.Configuration);
 builder.Services.RepositoryServicesConfigure();
 builder.Services.BusinessServicesConfigure();
 builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
-builder.Services.ConfigureLogFilter();
+builder.Services.ConfigureActionFilters();
 
 var app = builder.Build();
 
