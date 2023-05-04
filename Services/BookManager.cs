@@ -34,8 +34,6 @@ namespace Services
 
             _repoManager.BookRepository.DeleteOneBook(book);
             await _repoManager.SaveChangesAsync();
-            _repoManager.Commit(false);
-
         }
 
         public async Task<IEnumerable<Book>> GetAllBooksAsync(bool isTrack)
@@ -68,8 +66,6 @@ namespace Services
 
             _repoManager.BookRepository.InsertOneBook(book);
             await _repoManager.SaveChangesAsync();
-            _repoManager.Commit(false);
-
         }
 
         public async Task UpdateOneBookAsync(int id, BookDtoForUpdate bookDto)
@@ -83,8 +79,6 @@ namespace Services
 
             _repoManager.BookRepository.UpdateOneBook(result);
             await _repoManager.SaveChangesAsync();
-            _repoManager.Commit(false);
-
         }
     }
 }

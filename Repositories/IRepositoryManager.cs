@@ -7,7 +7,7 @@ using Repositories.Contract;
 
 namespace Repositories
 {
-    public interface IRepositoryManager: IEfTransaction
+    public interface IRepositoryManager
     {
         IBookRepository BookRepository { get; }
         Task SaveChangesAsync();

@@ -15,26 +15,13 @@ namespace Repositories
     {
         public Lazy<IBookRepository> _bookRepository;
         private RepositoryContext _context;
-        private IDbContextTransaction _dbContextTransaction;
         public RepositoryManager(RepositoryContext context,
             IBookRepository bookRepository)
         {
             _context = context;
-            _dbContextTransaction = _context.Database.BeginTransaction();
             _bookRepository = new Lazy<IBookRepository>(() => bookRepository);
         }
         public IBookRepository BookRepository => _bookRepository.Value;
-
-        public void Commit(bool callSaveChangesAsync = true, bool rollBackTransaction = false)
-        {
-            if(callSaveChangesAsync)
-                SaveChangesAsync();
-
-            if (rollBackTransaction)
-                _context.Database.RollbackTransaction();
-            else
-                _dbContextTransaction.Commit();
-        }
 
         public async Task SaveChangesAsync()
         {
