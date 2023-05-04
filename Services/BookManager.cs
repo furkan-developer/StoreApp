@@ -29,7 +29,7 @@ namespace Services
             var book = await _repoManager.BookRepository.GetOneBookAsync(false, id);
             if (book == null)
             {
-                throw new BookNotFoundException("Not Found Book"); 
+                throw new BookNotFoundException("Not Found Book");
             }
 
             _repoManager.BookRepository.DeleteOneBook(book);
@@ -40,81 +40,51 @@ namespace Services
 
         public async Task<IEnumerable<Book>> GetAllBooksAsync(bool isTrack)
         {
-            try
-            {
-                return await _repoManager.BookRepository.GetAllBooksAsync(isTrack);
-            }
-            catch (Exception ex)
-            {
-                throw new Exception($"Created exception when got list of the book object exception:\n{ex.Message}");
-            }
+            return await _repoManager.BookRepository.GetAllBooksAsync(isTrack);
         }
 
         public async Task<IEnumerable<Book>> GetAllBooksAsync(bool isTrack, Expression<Func<Book, bool>> expression)
         {
-            try
-            {
-                return await _repoManager.BookRepository.GetAllBooksAsync(isTrack,expression);
-            }
-            catch (Exception ex)
-            {
-                throw new Exception($"Created exception when got list of the book object exception:\n{ex.Message}");
-            }
+            return await _repoManager.BookRepository.GetAllBooksAsync(isTrack, expression);
         }
 
         public async Task<Book> GetOneBookAsync(bool isTrack, int id)
         {
-            try
-            {
-                 var book = await _repoManager.BookRepository.GetOneBookAsync(isTrack, id);
+            var book = await _repoManager.BookRepository.GetOneBookAsync(isTrack, id);
 
-                if (book is null)
-                    throw new FileNotFoundException("Not found book");
+            if (book is null)
+                throw new BookNotFoundException("Not found book");
 
-                return book;
-            }catch (Exception ex)
-            {
-                throw new Exception($"Created exception when got book object exception:\n{ex.Message}");
-            }
+            return book;
         }
 
         public async Task InsertOneBookAsync(BookDtoForInsert bookDto)
         {
-            try
-            {
-                if (bookDto == null)
-                    throw new ArgumentNullException("Book object is not null reference");
 
-                var book = _mapper.Map<Book>(bookDto);
+            if (bookDto == null)
+                throw new ArgumentNullException("Book object is not null reference");
 
-                _repoManager.BookRepository.InsertOneBook(book);
-               await _repoManager.SaveChangesAsync();
-                _repoManager.Commit(false);
-            }
-            catch (Exception ex)
-            {
-                throw new Exception($"Created exception when added book object exception:\n{ex.Message}");
-            }
+            var book = _mapper.Map<Book>(bookDto);
+
+            _repoManager.BookRepository.InsertOneBook(book);
+            await _repoManager.SaveChangesAsync();
+            _repoManager.Commit(false);
+
         }
 
         public async Task UpdateOneBookAsync(int id, BookDtoForUpdate bookDto)
         {
-            try
-            {
-                var result = await _repoManager.BookRepository.GetOneBookAsync(false, id);
-                if (result is null)
-                    throw new FileNotFoundException("Not found book");
 
-                result = _mapper.Map<Book>(bookDto);
+            var result = await _repoManager.BookRepository.GetOneBookAsync(false, id);
+            if (result is null)
+                throw new BookNotFoundException("Not found book");
 
-                _repoManager.BookRepository.UpdateOneBook(result);
-                await _repoManager.SaveChangesAsync();
-                _repoManager.Commit(false);
-            }
-            catch (Exception ex)
-            {
-                throw new Exception($"Created exception when updated book object exception:\n{ex.Message}");
-            }
+            result = _mapper.Map<Book>(bookDto);
+
+            _repoManager.BookRepository.UpdateOneBook(result);
+            await _repoManager.SaveChangesAsync();
+            _repoManager.Commit(false);
+
         }
     }
 }
