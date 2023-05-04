@@ -25,10 +25,10 @@ namespace Repositories
         }
         public IBookRepository BookRepository => _bookRepository.Value;
 
-        public void Commit(bool callSaveChanges = true, bool rollBackTransaction = false)
+        public void Commit(bool callSaveChangesAsync = true, bool rollBackTransaction = false)
         {
-            if(callSaveChanges)
-                SaveChanges();
+            if(callSaveChangesAsync)
+                SaveChangesAsync();
 
             if (rollBackTransaction)
                 _context.Database.RollbackTransaction();
@@ -36,9 +36,9 @@ namespace Repositories
                 _dbContextTransaction.Commit();
         }
 
-        public void SaveChanges()
+        public async Task SaveChangesAsync()
         {
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
     }
 }

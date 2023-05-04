@@ -10,6 +10,6 @@ namespace Repositories
     public interface IRepositoryManager: IEfTransaction
     {
         IBookRepository BookRepository { get; }
-        void SaveChanges();
+        Task SaveChangesAsync();
     }
 }

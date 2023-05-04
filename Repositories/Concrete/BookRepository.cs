@@ -1,4 +1,5 @@
 ﻿using Entities;
+using Microsoft.EntityFrameworkCore;
 using Repositories.Contract;
 using System;
 using System.Collections.Generic;
@@ -20,19 +21,19 @@ namespace Repositories.Concrete
             Delete(book);
         }
 
-        public IEnumerable<Book> GetAllBooks(bool isTrack)
+        public async Task<IEnumerable<Book>> GetAllBooksAsync(bool isTrack)
         {
-            return GetAll(isTrack).ToList();
+            return await GetAll(isTrack).ToListAsync();
         }
 
-        public IEnumerable<Book> GetAllBooks(bool isTrack, Expression<Func<Book, bool>> expression)
+        public async Task<IEnumerable<Book>> GetAllBooksAsync(bool isTrack, Expression<Func<Book, bool>> expression)
         {
-            return GetAll(isTrack,expression).ToList();
+            return await GetAll(isTrack,expression).ToListAsync();
         }
 
-        public Book? GetOneBook(bool isTrack,int id)
+        public async Task<Book?> GetOneBookAsync(bool isTrack,int id)
         {
-            return Get(isTrack, id).SingleOrDefault();
+            return await Get(isTrack, id).SingleOrDefaultAsync();
         }
 
         public void InsertOneBook(Book book)
