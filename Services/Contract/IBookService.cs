@@ -11,11 +11,11 @@ namespace Services.Contract
 {
     public interface IBookService
     {
-        Book GetOneBook(bool isTrack, int id);
-        IEnumerable<Book> GetAllBooks(bool isTrack);
-        IEnumerable<Book> GetAllBooks(bool isTrack, Expression<Func<Book, bool>> expression);
-        void InsertOneBook(BookDtoForInsert book);
-        void UpdateOneBook(int id, BookDtoForUpdate bookDto);
-        void DeleteOneBook(int id);
+        Task<Book> GetOneBookAsync(bool isTrack, int id);
+        Task<IEnumerable<Book>> GetAllBooksAsync(bool isTrack);
+        Task<IEnumerable<Book>> GetAllBooksAsync(bool isTrack, Expression<Func<Book, bool>> expression);
+        Task InsertOneBookAsync(BookDtoForInsert book);
+        Task UpdateOneBookAsync(int id, BookDtoForUpdate bookDto);
+        Task DeleteOneBookAsync(int id);
     }
 }

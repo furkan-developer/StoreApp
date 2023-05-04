@@ -2,6 +2,7 @@
 using Entities;
 using Entities.Dtos.Book;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.VisualBasic;
 using Repositories;
 using Services.Contract;
 using Services.CustomExceptions;
@@ -22,26 +23,26 @@ namespace Services
             _mapper = mapper;
         }
 
-        public void DeleteOneBook(int id)
+        public async Task DeleteOneBookAsync(int id)
         {
 
-            var book = _repoManager.BookRepository.GetOneBook(false, id);
+            var book = await _repoManager.BookRepository.GetOneBookAsync(false, id);
             if (book == null)
             {
                 throw new BookNotFoundException("Not Found Book"); 
             }
 
             _repoManager.BookRepository.DeleteOneBook(book);
-            _repoManager.SaveChanges();
+            await _repoManager.SaveChangesAsync();
             _repoManager.Commit(false);
 
         }
 
-        public IEnumerable<Book> GetAllBooks(bool isTrack)
+        public async Task<IEnumerable<Book>> GetAllBooksAsync(bool isTrack)
         {
             try
             {
-                return _repoManager.BookRepository.GetAllBooks(isTrack);
+                return await _repoManager.BookRepository.GetAllBooksAsync(isTrack);
             }
             catch (Exception ex)
             {
@@ -49,11 +50,11 @@ namespace Services
             }
         }
 
-        public IEnumerable<Book> GetAllBooks(bool isTrack, Expression<Func<Book, bool>> expression)
+        public async Task<IEnumerable<Book>> GetAllBooksAsync(bool isTrack, Expression<Func<Book, bool>> expression)
         {
             try
             {
-                return _repoManager.BookRepository.GetAllBooks(isTrack,expression);
+                return await _repoManager.BookRepository.GetAllBooksAsync(isTrack,expression);
             }
             catch (Exception ex)
             {
@@ -61,11 +62,11 @@ namespace Services
             }
         }
 
-        public Book GetOneBook(bool isTrack, int id)
+        public async Task<Book> GetOneBookAsync(bool isTrack, int id)
         {
             try
             {
-                 var book = _repoManager.BookRepository.GetOneBook(isTrack, id);
+                 var book = await _repoManager.BookRepository.GetOneBookAsync(isTrack, id);
 
                 if (book is null)
                     throw new FileNotFoundException("Not found book");
@@ -77,7 +78,7 @@ namespace Services
             }
         }
 
-        public void InsertOneBook(BookDtoForInsert bookDto)
+        public async Task InsertOneBookAsync(BookDtoForInsert bookDto)
         {
             try
             {
@@ -87,7 +88,7 @@ namespace Services
                 var book = _mapper.Map<Book>(bookDto);
 
                 _repoManager.BookRepository.InsertOneBook(book);
-                _repoManager.SaveChanges();
+               await _repoManager.SaveChangesAsync();
                 _repoManager.Commit(false);
             }
             catch (Exception ex)
@@ -96,18 +97,18 @@ namespace Services
             }
         }
 
-        public void UpdateOneBook(int id, BookDtoForUpdate bookDto)
+        public async Task UpdateOneBookAsync(int id, BookDtoForUpdate bookDto)
         {
             try
             {
-                var result = _repoManager.BookRepository.GetOneBook(false, id);
+                var result = await _repoManager.BookRepository.GetOneBookAsync(false, id);
                 if (result is null)
                     throw new FileNotFoundException("Not found book");
 
                 result = _mapper.Map<Book>(bookDto);
 
                 _repoManager.BookRepository.UpdateOneBook(result);
-                _repoManager.SaveChanges();
+                await _repoManager.SaveChangesAsync();
                 _repoManager.Commit(false);
             }
             catch (Exception ex)

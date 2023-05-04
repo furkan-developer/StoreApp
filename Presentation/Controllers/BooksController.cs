@@ -23,43 +23,43 @@ namespace Presentation.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetAllBooks()
+        public async Task<IActionResult> GetAllBooks()
         {
-            var books = _serviceManager.BookService.GetAllBooks(false);
+            var books = await _serviceManager.BookService.GetAllBooksAsync(false);
             return Ok(books);
         }
 
         [HttpGet("{id:int}")]
-        public IActionResult GetOneBook([FromRoute(Name = "id")] int id)
+        public async Task<IActionResult> GetOneBook([FromRoute(Name = "id")] int id)
         {
-            var book = _serviceManager.BookService.GetOneBook(false, id);
+            var book = await _serviceManager.BookService.GetOneBookAsync(false, id);
 
             return Ok(book);
         }
 
         [HttpPost]
-        public IActionResult InsertOneBook([FromBody] BookDtoForInsert bookDto)
+        public async Task<IActionResult> InsertOneBook([FromBody] BookDtoForInsert bookDto)
         {
             if(!ModelState.IsValid)
             {
                 return UnprocessableEntity(ModelState);
             }
 
-            _serviceManager.BookService.InsertOneBook(bookDto);
+            await _serviceManager.BookService.InsertOneBookAsync(bookDto);
             return NoContent();
         }
 
         [HttpPut("{id:int}")]
-        public IActionResult UpdateOneBook([FromRoute(Name = "id")] int id, [FromBody] BookDtoForUpdate bookDto)
+        public async Task<IActionResult> UpdateOneBook([FromRoute(Name = "id")] int id, [FromBody] BookDtoForUpdate bookDto)
         {
-            _serviceManager.BookService.UpdateOneBook(id, bookDto);
+            await _serviceManager.BookService.UpdateOneBookAsync(id, bookDto);
             return NoContent();
         }
 
         [HttpDelete("{id:int}")]
-        public IActionResult RemoveOneBook([FromRoute(Name = "id")] int id)
+        public async Task<IActionResult> RemoveOneBook([FromRoute(Name = "id")] int id)
         {
-            _serviceManager.BookService.DeleteOneBook(id);
+            await _serviceManager.BookService.DeleteOneBookAsync(id);
             return NoContent();
         }
     }
