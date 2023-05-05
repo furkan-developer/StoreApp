@@ -1,5 +1,6 @@
 ﻿using Entities;
 using Entities.Dtos.Book;
+using Entities.RequestFeatures;
 using Microsoft.AspNetCore.Mvc;
 using Presentation.Filters;
 using Services;
@@ -24,9 +25,9 @@ namespace Presentation.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAllBooks()
+        public async Task<IActionResult> GetAllBooks([FromQuery]BookRequestParameters requestParameters)
         {
-            var books = await _serviceManager.BookService.GetAllBooksAsync(false);
+            var books = await _serviceManager.BookService.GetAllBooksAsync(false,requestParameters);
             return Ok(books);
         }
 

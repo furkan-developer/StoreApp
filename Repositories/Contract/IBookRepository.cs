@@ -1,4 +1,5 @@
 ﻿using Entities;
+using Entities.RequestFeatures;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlTypes;
@@ -12,7 +13,7 @@ namespace Repositories.Contract
     public interface IBookRepository
     {
         Task<Book?> GetOneBookAsync(bool isTrack, int id);
-        Task<IEnumerable<Book>> GetAllBooksAsync(bool isTrack);
+        Task<IEnumerable<Book>> GetAllBooksAsync(bool isTrack,BookRequestParameters requestParameters);
         Task<IEnumerable<Book>> GetAllBooksAsync(bool isTrack, Expression<Func<Book,bool>> expression);
         void InsertOneBook(Book book);
         void UpdateOneBook(Book book);

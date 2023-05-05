@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Entities;
 using Entities.Dtos.Book;
+using Entities.RequestFeatures;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualBasic;
 using Repositories;
@@ -33,9 +34,9 @@ namespace Services
             await _repoManager.SaveChangesAsync();
         }
 
-        public async Task<IEnumerable<Book>> GetAllBooksAsync(bool isTrack)
+        public async Task<IEnumerable<Book>> GetAllBooksAsync(bool isTrack,BookRequestParameters requestParameters)
         {
-            return await _repoManager.BookRepository.GetAllBooksAsync(isTrack);
+            return await _repoManager.BookRepository.GetAllBooksAsync(isTrack,requestParameters);
         }
 
         public async Task<IEnumerable<Book>> GetAllBooksAsync(bool isTrack, Expression<Func<Book, bool>> expression)
