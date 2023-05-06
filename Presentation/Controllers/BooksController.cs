@@ -2,6 +2,7 @@
 using Entities.Dtos.Book;
 using Entities.RequestFeatures;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using Presentation.Filters;
 using Services;
 using System;
@@ -27,8 +28,11 @@ namespace Presentation.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAllBooks([FromQuery]BookRequestParameters requestParameters)
         {
-            var books = await _serviceManager.BookService.GetAllBooksAsync(false,requestParameters);
-            return Ok(books);
+            var pagedList = await _serviceManager.BookService.GetAllBooksAsync(false,requestParameters);
+
+            Response.Headers.Add("X-Pagination", JsonConvert.SerializeObject(pagedList.metaData));
+
+            return Ok(pagedList.books);
         }
 
         [HttpGet("{id:int}")]

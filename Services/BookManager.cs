@@ -34,9 +34,13 @@ namespace Services
             await _repoManager.SaveChangesAsync();
         }
 
-        public async Task<IEnumerable<Book>> GetAllBooksAsync(bool isTrack,BookRequestParameters requestParameters)
+        public async Task<(IEnumerable<Book>,MetaData)> GetAllBooksAsync(bool isTrack,BookRequestParameters requestParameters)
         {
-            return await _repoManager.BookRepository.GetAllBooksAsync(isTrack,requestParameters);
+            var pagedList = await _repoManager.BookRepository.GetAllBooksAsync(isTrack,requestParameters);
+
+            var resources = _mapper.Map<IEnumerable<Book>>(pagedList);
+            
+            return (resources, pagedList.MetaData);
         }
 
         public async Task<IEnumerable<Book>> GetAllBooksAsync(bool isTrack, Expression<Func<Book, bool>> expression)

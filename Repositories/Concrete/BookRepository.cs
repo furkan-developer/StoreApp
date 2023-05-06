@@ -22,12 +22,11 @@ namespace Repositories.Concrete
             Delete(book);
         }
 
-        public async Task<IEnumerable<Book>> GetAllBooksAsync(bool isTrack,BookRequestParameters requestParameters)
+        public async Task<PagedList<Book>> GetAllBooksAsync(bool isTrack,BookRequestParameters requestParameters)
         {
-            return await GetAll(isTrack)
-                .Skip((requestParameters.PageNumber - 1) * requestParameters.PageSize)
-                .Take(requestParameters.PageSize)
-                .ToListAsync();
+            var resources = await GetAll(isTrack).ToListAsync();
+
+            return PagedList<Book>.ToPagedList(resources, requestParameters.PageNumber,requestParameters.PageSize);
         }
 
         public async Task<IEnumerable<Book>> GetAllBooksAsync(bool isTrack, Expression<Func<Book, bool>> expression)
