@@ -2,6 +2,7 @@
 using Entities.RequestFeatures;
 using Microsoft.EntityFrameworkCore;
 using Repositories.Contract;
+using Repositories.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,7 +26,7 @@ namespace Repositories.Concrete
         public async Task<PagedList<Book>> GetAllBooksAsync(bool isTrack,BookRequestParameters requestParameters)
         {
             var resources = await GetAll(isTrack)
-                .Where(b => (b.Price > requestParameters.MinPrice) && (b.Price < requestParameters.MaxPrice))
+                .FilterBook(requestParameters.MinPrice, requestParameters.MaxPrice)
                 .ToListAsync();
 
             return PagedList<Book>.ToPagedList(resources, requestParameters.PageNumber,requestParameters.PageSize);
