@@ -24,7 +24,9 @@ namespace Repositories.Concrete
 
         public async Task<PagedList<Book>> GetAllBooksAsync(bool isTrack,BookRequestParameters requestParameters)
         {
-            var resources = await GetAll(isTrack).ToListAsync();
+            var resources = await GetAll(isTrack)
+                .Where(b => (b.Price > requestParameters.MinPrice) && (b.Price < requestParameters.MaxPrice))
+                .ToListAsync();
 
             return PagedList<Book>.ToPagedList(resources, requestParameters.PageNumber,requestParameters.PageSize);
         }
