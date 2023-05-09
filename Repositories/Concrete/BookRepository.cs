@@ -27,6 +27,7 @@ namespace Repositories.Concrete
         {
             var resources = await GetAll(isTrack)
                 .FilterBook(requestParameters.MinPrice, requestParameters.MaxPrice)
+                .SearchBook(requestParameters.TitleSearchTerm)
                 .ToListAsync();
 
             return PagedList<Book>.ToPagedList(resources, requestParameters.PageNumber,requestParameters.PageSize);

@@ -8,5 +8,6 @@ namespace Entities.RequestFeatures
 {
     public class BookRequestParameters : RequestParameters
     {
+        public String? TitleSearchTerm { get; set; }
     }
 }
