@@ -10,8 +10,10 @@ using System.Threading.Tasks;
 
 namespace Presentation.Filters
 {
-    public class ValidationFilter : Attribute, IActionFilter
+    public class ValidationFilter : Attribute, IActionFilter, IOrderedFilter
     {
+        public int Order { get; set; } = 0;
+
         public void OnActionExecuted(ActionExecutedContext context)
         {
 

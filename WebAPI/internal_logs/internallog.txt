@@ -554,3 +554,63 @@
 2023-05-08 15:16:22.1540 Info Configuration initialized.
 2023-05-08 15:16:22.1630 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.1.2.1561. Product version: 5.1.2+f57745d9fb1124b8629db879019db120a57698ab. GlobalAssemblyCache: False
 2023-05-08 15:16:22.1630 Info Validating config: TargetNames=allfile, ownFile-web, logfile, ConfigItems=63, FilePath=C:\Users\furka\Desktop\btk-web-apı\StoreApp\WebAPI\bin\Debug\net7.0\NLog.config
+2023-05-09 18:47:17.8793 Info Message Template Auto Format enabled
+2023-05-09 18:47:17.8901 Info Loading assembly: NLog.Web.AspNetCore
+2023-05-09 18:47:17.9378 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2023-05-09 18:47:17.9378 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2023-05-09 18:47:17.9378 Info Registered target NLog.Targets.FileTarget(Name=logfile)
+2023-05-09 18:47:17.9589 Warn Error has been raised. Exception: NLog.NLogConfigurationException: Target 'lifetimeConsole' not found for logging rule: Microsoft.Hosting.Lifetime.
+2023-05-09 18:47:17.9852 Info Validating config: TargetNames=allfile, ownFile-web, logfile, ConfigItems=63, FilePath=C:\Users\furka\Desktop\btk-web-apı\StoreApp\WebAPI\bin\Debug\net7.0\NLog.config
+2023-05-09 18:47:18.0120 Info Configuration initialized.
+2023-05-09 18:47:18.0385 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.1.2.1561. Product version: 5.1.2+f57745d9fb1124b8629db879019db120a57698ab. GlobalAssemblyCache: False
+2023-05-09 18:47:18.0385 Info Validating config: TargetNames=allfile, ownFile-web, logfile, ConfigItems=63, FilePath=C:\Users\furka\Desktop\btk-web-apı\StoreApp\WebAPI\bin\Debug\net7.0\NLog.config
+2023-05-09 18:49:52.8322 Info Message Template Auto Format enabled
+2023-05-09 18:49:52.8455 Info Loading assembly: NLog.Web.AspNetCore
+2023-05-09 18:49:52.9097 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2023-05-09 18:49:52.9097 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2023-05-09 18:49:52.9097 Info Registered target NLog.Targets.FileTarget(Name=logfile)
+2023-05-09 18:49:52.9380 Warn Error has been raised. Exception: NLog.NLogConfigurationException: Target 'lifetimeConsole' not found for logging rule: Microsoft.Hosting.Lifetime.
+2023-05-09 18:49:52.9665 Info Validating config: TargetNames=allfile, ownFile-web, logfile, ConfigItems=63, FilePath=C:\Users\furka\Desktop\btk-web-apı\StoreApp\WebAPI\bin\Debug\net7.0\NLog.config
+2023-05-09 18:49:52.9962 Info Configuration initialized.
+2023-05-09 18:49:53.0155 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.1.2.1561. Product version: 5.1.2+f57745d9fb1124b8629db879019db120a57698ab. GlobalAssemblyCache: False
+2023-05-09 18:49:53.0155 Info Validating config: TargetNames=allfile, ownFile-web, logfile, ConfigItems=63, FilePath=C:\Users\furka\Desktop\btk-web-apı\StoreApp\WebAPI\bin\Debug\net7.0\NLog.config
+2023-05-09 18:51:40.4800 Info Message Template Auto Format enabled
+2023-05-09 18:51:40.4948 Info Loading assembly: NLog.Web.AspNetCore
+2023-05-09 18:51:40.5893 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2023-05-09 18:51:40.5950 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2023-05-09 18:51:40.5950 Info Registered target NLog.Targets.FileTarget(Name=logfile)
+2023-05-09 18:51:40.6223 Warn Error has been raised. Exception: NLog.NLogConfigurationException: Target 'lifetimeConsole' not found for logging rule: Microsoft.Hosting.Lifetime.
+2023-05-09 18:51:40.6443 Info Validating config: TargetNames=allfile, ownFile-web, logfile, ConfigItems=63, FilePath=C:\Users\furka\Desktop\btk-web-apı\StoreApp\WebAPI\bin\Debug\net7.0\NLog.config
+2023-05-09 18:51:40.6702 Info Configuration initialized.
+2023-05-09 18:51:40.6860 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.1.2.1561. Product version: 5.1.2+f57745d9fb1124b8629db879019db120a57698ab. GlobalAssemblyCache: False
+2023-05-09 18:51:40.6860 Info Validating config: TargetNames=allfile, ownFile-web, logfile, ConfigItems=63, FilePath=C:\Users\furka\Desktop\btk-web-apı\StoreApp\WebAPI\bin\Debug\net7.0\NLog.config
+2023-05-09 18:52:08.5163 Info Message Template Auto Format enabled
+2023-05-09 18:52:08.5308 Info Loading assembly: NLog.Web.AspNetCore
+2023-05-09 18:52:08.6527 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2023-05-09 18:52:08.6563 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2023-05-09 18:52:08.6563 Info Registered target NLog.Targets.FileTarget(Name=logfile)
+2023-05-09 18:52:08.7058 Warn Error has been raised. Exception: NLog.NLogConfigurationException: Target 'lifetimeConsole' not found for logging rule: Microsoft.Hosting.Lifetime.
+2023-05-09 18:52:08.7280 Info Validating config: TargetNames=allfile, ownFile-web, logfile, ConfigItems=63, FilePath=C:\Users\furka\Desktop\btk-web-apı\StoreApp\WebAPI\bin\Debug\net7.0\NLog.config
+2023-05-09 18:52:08.7714 Info Configuration initialized.
+2023-05-09 18:52:08.8389 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.1.2.1561. Product version: 5.1.2+f57745d9fb1124b8629db879019db120a57698ab. GlobalAssemblyCache: False
+2023-05-09 18:52:08.8403 Info Validating config: TargetNames=allfile, ownFile-web, logfile, ConfigItems=63, FilePath=C:\Users\furka\Desktop\btk-web-apı\StoreApp\WebAPI\bin\Debug\net7.0\NLog.config
+2023-05-09 18:54:49.3529 Info Message Template Auto Format enabled
+2023-05-09 18:54:49.3626 Info Loading assembly: NLog.Web.AspNetCore
+2023-05-09 18:54:49.4150 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2023-05-09 18:54:49.4189 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2023-05-09 18:54:49.4189 Info Registered target NLog.Targets.FileTarget(Name=logfile)
+2023-05-09 18:54:49.4347 Warn Error has been raised. Exception: NLog.NLogConfigurationException: Target 'lifetimeConsole' not found for logging rule: Microsoft.Hosting.Lifetime.
+2023-05-09 18:54:49.4545 Info Validating config: TargetNames=allfile, ownFile-web, logfile, ConfigItems=63, FilePath=C:\Users\furka\Desktop\btk-web-apı\StoreApp\WebAPI\bin\Debug\net7.0\NLog.config
+2023-05-09 18:54:49.4797 Info Configuration initialized.
+2023-05-09 18:54:49.4909 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.1.2.1561. Product version: 5.1.2+f57745d9fb1124b8629db879019db120a57698ab. GlobalAssemblyCache: False
+2023-05-09 18:54:49.4909 Info Validating config: TargetNames=allfile, ownFile-web, logfile, ConfigItems=63, FilePath=C:\Users\furka\Desktop\btk-web-apı\StoreApp\WebAPI\bin\Debug\net7.0\NLog.config
+2023-05-09 18:55:35.8888 Info Message Template Auto Format enabled
+2023-05-09 18:55:35.8888 Info Loading assembly: NLog.Web.AspNetCore
+2023-05-09 18:55:35.9482 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2023-05-09 18:55:35.9519 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2023-05-09 18:55:35.9519 Info Registered target NLog.Targets.FileTarget(Name=logfile)
+2023-05-09 18:55:35.9685 Warn Error has been raised. Exception: NLog.NLogConfigurationException: Target 'lifetimeConsole' not found for logging rule: Microsoft.Hosting.Lifetime.
+2023-05-09 18:55:35.9881 Info Validating config: TargetNames=allfile, ownFile-web, logfile, ConfigItems=63, FilePath=C:\Users\furka\Desktop\btk-web-apı\StoreApp\WebAPI\bin\Debug\net7.0\NLog.config
+2023-05-09 18:55:36.0096 Info Configuration initialized.
+2023-05-09 18:55:36.0223 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.1.2.1561. Product version: 5.1.2+f57745d9fb1124b8629db879019db120a57698ab. GlobalAssemblyCache: False
+2023-05-09 18:55:36.0223 Info Validating config: TargetNames=allfile, ownFile-web, logfile, ConfigItems=63, FilePath=C:\Users\furka\Desktop\btk-web-apı\StoreApp\WebAPI\bin\Debug\net7.0\NLog.config

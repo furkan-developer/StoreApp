@@ -25,6 +25,8 @@ namespace Presentation.Controllers
             _serviceManager = serviceManager;
         }
 
+        [BookRequestParameterStateFilter(Order =int.MinValue)]
+        [ValidationFilter(Order = int.MinValue + 1)]
         [HttpGet]
         public async Task<IActionResult> GetAllBooks([FromQuery]BookRequestParameters requestParameters)
         {
