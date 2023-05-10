@@ -8,6 +8,10 @@ namespace Entities.RequestFeatures
 {
     public class BookRequestParameters : RequestParameters
     {
+        public BookRequestParameters()
+        {
+            OrderBy = "id";
+        }
         public String? TitleSearchTerm { get; set; }
     }
 }
