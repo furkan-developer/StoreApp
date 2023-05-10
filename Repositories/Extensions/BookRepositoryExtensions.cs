@@ -26,35 +26,13 @@ namespace Repositories.Extensions
             return books.Where(b => b.Title.ToLower().Contains(lowerCase));
         }
 
-        // orderByPattern Example = title desc, price
+        // orderByPattern Example: title desc, price
         public static IQueryable<Book> SortBooks(this IQueryable<Book> books,string orderByPattern)
         {
             if(string.IsNullOrWhiteSpace(orderByPattern))
                 return books.OrderBy(b => b.Id);
 
-            PropertyInfo[] propInfos = typeof(Book).GetProperties(BindingFlags.Public | BindingFlags.Instance);
-
-            var orderQueryStringBuilder = new StringBuilder();
-
-            string[] orderByExpressions = orderByPattern.Trim().Split(',');
-
-            foreach (string orderByExpression in orderByExpressions)
-            {
-                if (string.IsNullOrWhiteSpace(orderByExpression))
-                    continue;
-
-                string propNameFromExpression = orderByExpression.Trim().Split(" ")[0];
-
-                PropertyInfo propInfo = propInfos.SingleOrDefault(propInfos => propInfos.Name.Equals(propNameFromExpression, StringComparison.InvariantCultureIgnoreCase));
-
-                if(propInfo is null)
-                    continue;
-
-                string orderByKeyword = orderByExpression.EndsWith(" desc") ? "descending" : "ascending";
-                orderQueryStringBuilder.Append($"{propInfo.Name.ToString()} {orderByKeyword},");
-            }
-
-            string orderByQuery = orderQueryStringBuilder.ToString().TrimEnd(',');
+            string orderByQuery = OrderQueryBuilder.CreateOrderQuery(orderByPattern);
 
             if(orderByQuery is null)
                 return books.OrderBy(b=> b.Id);
