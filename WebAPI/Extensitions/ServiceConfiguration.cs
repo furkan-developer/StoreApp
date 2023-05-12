@@ -6,6 +6,7 @@ using Services.Contract;
 using Services;
 using System.Reflection;
 using Microsoft.EntityFrameworkCore.Query.Internal;
+using Entities;
 
 namespace WebAPI.Extensitions
 {
@@ -31,6 +32,8 @@ namespace WebAPI.Extensitions
         {
             // Logger
             services.AddSingleton<ILoggerService,LoggerManager>();
+            // Data Shaper
+            services.AddSingleton<IDataShaper<Book>,DataShaper<Book>>();
 
             services.AddScoped<IServiceManager, ServiceManager>();
             services.AddScoped<IBookService, BookManager>();

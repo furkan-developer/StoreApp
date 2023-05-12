@@ -8,6 +8,7 @@ using Repositories;
 using Services.Contract;
 using Services.CustomExceptions;
 using System.Diagnostics.CodeAnalysis;
+using System.Dynamic;
 using System.Linq.Expressions;
 
 namespace Services
@@ -17,12 +18,14 @@ namespace Services
         private readonly IRepositoryManager _repoManager;
         private readonly ILoggerService _logger;
         private readonly IMapper _mapper;
+        private readonly IDataShaper<Book> _dataShaper;
 
-        public BookManager(IRepositoryManager repoManager, ILoggerService logger, IMapper mapper)
+        public BookManager(IRepositoryManager repoManager, ILoggerService logger, IMapper mapper, IDataShaper<Book> dataShaper)
         {
             _repoManager = repoManager;
             _logger = logger;
             _mapper = mapper;
+            _dataShaper = dataShaper;
         }
 
         public async Task DeleteOneBookAsync(int id)
@@ -34,13 +37,15 @@ namespace Services
             await _repoManager.SaveChangesAsync();
         }
 
-        public async Task<(IEnumerable<Book>,MetaData)> GetAllBooksAsync(bool isTrack,BookRequestParameters requestParameters)
+        public async Task<(IEnumerable<ExpandoObject>,MetaData)> GetAllBooksAsync(bool isTrack,BookRequestParameters requestParameters)
         {
             var pagedList = await _repoManager.BookRepository.GetAllBooksAsync(isTrack,requestParameters);
 
             var resources = _mapper.Map<IEnumerable<Book>>(pagedList);
-            
-            return (resources, pagedList.MetaData);
+
+            var shapedResources = _dataShaper.ShapeData(resources, requestParameters.Fields);
+
+            return (shapedResources, pagedList.MetaData);
         }
 
         public async Task<IEnumerable<Book>> GetAllBooksAsync(bool isTrack, Expression<Func<Book, bool>> expression)
