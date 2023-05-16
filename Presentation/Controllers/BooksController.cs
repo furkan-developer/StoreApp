@@ -2,6 +2,7 @@
 using Entities.Dtos.Book;
 using Entities.RequestFeatures;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Net.Http.Headers;
 using Newtonsoft.Json;
 using Presentation.Filters;
 using Services;
@@ -66,6 +67,19 @@ namespace Presentation.Controllers
         {
             await _serviceManager.BookService.DeleteOneBookAsync(id);
             return NoContent();
+        }
+
+        [HttpOptions]
+        public IActionResult GetBooksOptions()
+        {
+            Response.Headers.Add(HeaderNames.AccessControlAllowMethods, "GET, POST, DELETE, PUT, OPTIONS, HEAD");
+
+            Response.Headers.Add(HeaderNames.AccessControlAllowHeaders, "Accept, X-Pagination, Allow");
+
+            Response.Headers.Add(HeaderNames.Accept, "application/json, application/xml");
+            Response.Headers.Add(HeaderNames.Allow, "GET, POST, PUT, DELETE, HEAD, OPTIONS");
+
+            return Ok();
         }
     }
 
