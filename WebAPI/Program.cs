@@ -11,6 +11,7 @@ using Services.Contract;
 using System.Reflection;
 using WebAPI.Extensitions;
 
+var allowAnyOrigin = "_allowAnyOrigin";
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -27,6 +28,18 @@ builder.Services.AddControllers(options =>
 builder.Services.Configure<ApiBehaviorOptions>(options =>
 {
     options.SuppressModelStateInvalidFilter = true;
+});
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(
+        name: allowAnyOrigin,
+        policy =>
+        {
+            policy
+            .AllowAnyOrigin()
+            .WithMethods("GET", "POST","PUT","DELETE","OPTIONS","HEAD");
+        });
 });
 
 builder.Logging.ClearProviders();
@@ -61,6 +74,8 @@ var loggerService = app.Services.GetRequiredService<ILoggerService>();
 app.ConfigureExceptionHandler(loggerService); 
 
 app.UseHttpsRedirection();
+
+app.UseCors(allowAnyOrigin);
 
 app.UseAuthorization();
 
