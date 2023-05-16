@@ -47,5 +47,10 @@ namespace Repositories.Concrete
         {
             _entities.Update(entity);
         }
+
+        public async Task<bool> Any(int id)
+        {
+            return await _entities.AnyAsync(r => r.Id.Equals(id));
+        }
     }
 }

@@ -18,5 +18,7 @@ namespace Repositories.Contract
         void InsertOneBook(Book book);
         void UpdateOneBook(Book book);
         void DeleteOneBook(Book book);
+
+        Task<bool> HasOneBookAsync(int id);
     }
 }

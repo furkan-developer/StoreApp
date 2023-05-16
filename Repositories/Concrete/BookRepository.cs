@@ -53,5 +53,10 @@ namespace Repositories.Concrete
         {
             Update(book);
         }
+
+        public async Task<bool> HasOneBookAsync(int id)
+        {
+            return await Any(id);
+        }
     }
 }

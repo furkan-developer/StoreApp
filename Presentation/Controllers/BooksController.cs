@@ -81,6 +81,17 @@ namespace Presentation.Controllers
 
             return Ok();
         }
+
+        [HttpHead("{id:int}")]
+        public async Task<IActionResult> CheckExistBookById([FromRoute(Name = "id")]int id)
+        {
+            var hasBook = await _serviceManager.BookService.HasOneBookAsync(id);
+
+            if (!hasBook)
+                return NotFound();
+
+            return Ok();
+        }
     }
 
 }

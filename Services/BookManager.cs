@@ -83,6 +83,11 @@ namespace Services
             await _repoManager.SaveChangesAsync();
         }
 
+        public async Task<bool> HasOneBookAsync(int id)
+        {
+            return await _repoManager.BookRepository.HasOneBookAsync(id);
+        }
+
         #region Business Rules
         private async Task<Book> GetOneBookByIdAndCheckExist(bool isTrack, int id)
         {

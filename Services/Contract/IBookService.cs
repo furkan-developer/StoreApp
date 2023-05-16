@@ -19,5 +19,7 @@ namespace Services.Contract
         Task InsertOneBookAsync(BookDtoForInsert book);
         Task UpdateOneBookAsync(int id, BookDtoForUpdate bookDto);
         Task DeleteOneBookAsync(int id);
+
+        Task<bool> HasOneBookAsync(int id);
     }
 }
